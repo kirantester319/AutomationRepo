@@ -1,0 +1,6 @@
+Automation	 Maven					  SeleniumTask
+BankProject	 PolyMorphism				  test1.txt
+Calculation	 Program				  test2.txt
+CollectionsJava  Project				  UISeleniumTask
+giftcard	 RealEstateProject
+Java		 selenium-server-standalone-3.141.59.jar
