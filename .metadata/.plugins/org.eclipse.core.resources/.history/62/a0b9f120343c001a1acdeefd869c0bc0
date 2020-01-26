@@ -1,0 +1,65 @@
+package Test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+
+
+public class BaseTest {
+	
+	static WebDriver driver;
+	
+	@Test
+	public void Initialization()
+	{
+		System.setProperty("webdriver.chrome.driver", "F:\\Drivers\\chromedriver1.exe");
+		driver= new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.get("https://fd-calculator.in/");
+		
+		
+	//Principle Field
+		driver.findElement(By.xpath("//input[contains(@id,'amountInputField')]")).sendKeys("100000");;
+		//Periiod
+		driver.findElement(By.xpath("//input[contains(@id,'periodInputField')]")).sendKeys("365");;
+		
+		WebElement Timeperiod= driver.findElement(By.xpath("//*[@id=\"amountSelectField\"]"));
+		Select Period = new Select (Timeperiod);
+		
+		Period.selectByIndex(2);
+		
+		//InterestInputField
+		
+		driver.findElement(By.xpath("//input[contains(@id,'interestInputField')]")).sendKeys("8.5");
+		
+		
+		//Compound Frequency
+		WebElement compound=	driver.findElement(By.xpath("//*[@id=\"frequencySelectField\"]"));
+		Select comfreq = new Select (Timeperiod);
+		comfreq.selectByVisibleText("Yearly");
+		
+		
+		//Calculate Button
+		
+		driver.findElement(By.xpath("//*[@id=\"calculateButton\"]"));
+		
+		
+		
+		
+	}
+	
+/*	@AfterTest
+	public void teardown()
+	{
+		driver.close();
+	}
+*/	
+
+}

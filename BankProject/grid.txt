@@ -1,0 +1,29 @@
+public class grid
+
+{
+DesiredCapabilities cap=null;
+@Parameters("browser")
+@Test
+ public void Gexe(String br) throws MalformedURLException
+ {
+	if (br.equalsIgnoreCase("firefox")) 
+	{
+		 cap= new DesiredCapabilities();
+		 cap.setBrowserName("firefox");
+		 cap.setPlatform(Platform.WINDOWS);
+			}
+	else if (br.equalsIgnoreCase("chrome")) 
+	{
+		 cap= new DesiredCapabilities();
+		 cap.setBrowserName("chrome");
+		 cap.setPlatform(Platform.WINDOWS);
+			
+	}
+	 
+	 RemoteWebDriver driver=new RemoteWebDriver(new URL("http://14.96.112.77:4444/wd/hub"),cap);
+	 driver.get("http://primusbank.qedgetech.com/");
+	 driver.manage().window().maximize();
+	 ranfordHP Php=PageFactory.initElements(driver,ranfordHP.class);
+		Php.login("Admin","Admin");
+ }
+}

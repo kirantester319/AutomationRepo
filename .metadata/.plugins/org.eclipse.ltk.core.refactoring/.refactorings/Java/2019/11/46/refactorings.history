@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;JavaP.removeDots.java&apos; to &apos;reverseString.java&apos;&#x0D;&#x0A;- Original project: &apos;Java&apos;&#x0D;&#x0A;- Original element: &apos;JavaP.removeDots.java&apos;&#x0D;&#x0A;- Renamed element: &apos;JavaP.reverseString.java&apos;" description="Rename compilation unit &apos;removeDots.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;JavaP{removeDots.java" name="reverseString.java" references="false" stamp="1573830111272" version="1.0"/>
+</session>

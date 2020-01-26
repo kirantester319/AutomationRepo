@@ -1,0 +1,38 @@
+package ThisKeyword;
+
+class ThisKeyword {
+	
+	
+	    ThisKeyword()
+	    {
+	        this(1);
+	        System.out.println(1);
+
+	    }
+	    ThisKeyword(int x)
+	    {
+	        System.out.println(2);
+	    }
+	}
+	class const1 extends Const
+	{
+	    int a;
+	    const1()
+	    {
+	        this(8);
+	        System.out.println(3);
+
+	    }
+	        const1(int x)
+	    {
+
+	        System.out.println(4);
+
+	    }
+	    public static void main(String s[])
+	    {
+	        new const1();
+	    }
+	}
+
+}

@@ -1,0 +1,56 @@
+
+public class ranfordHP 
+
+{
+@FindBy (id="txtuId")
+WebElement Uname;
+
+@FindBy (id="txtPword")
+WebElement Pwd;
+
+@FindBy (id="login")
+WebElement Login;
+
+public void login(String Un,String Pswd)
+		
+{
+	Uname.sendKeys(Un);
+	Pwd.sendKeys(Pswd);
+	Login.click();
+}
+}
+
+
+
+
+###########################################################################################################################
+
+public class adminHP 
+
+{
+@FindBy (xpath=".//*[@id='Table_01']/tbody/tr[2]/td/table/tbody/tr[2]/td/a/img")
+WebElement branch;
+
+@FindBy (xpath=".//*[@id='Table_01']/tbody/tr[2]/td/table/tbody/tr[4]/td/a/img")
+WebElement role;
+
+@FindBy (xpath=".//*[@id='Table_02']/tbody/tr/td[1]/a/img")
+WebElement home;
+
+@FindBy(xpath=".//*[@id='Table_01']/tbody/tr/td[1]/a/img")
+WebElement home1;
+
+public void brch()
+
+{
+	branch.click();
+}
+public void rle()
+{
+	role.click();
+}
+public void hm()
+{
+	home1.click();
+}
+}

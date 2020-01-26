@@ -1,0 +1,53 @@
+public class libexe {
+
+	
+	public static void main(String[] args) throws IOException {
+		
+		
+		lib LB=new lib();
+		String Res=LB.openApp("http://192.168.1.4/ranford2");
+          System.out.println(Res);
+          
+          Res=LB.AdmLgn("Admin","Admin");
+          System.out.println(Res);
+          
+          
+          FileInputStream Fis=new FileInputStream("E:\\Ranfordbank\\ranford\\src\\com\\ranford\\testdata\\Roles.xlsx");
+          
+          //Create WorkBook
+          
+          XSSFWorkbook WB=new XSSFWorkbook(Fis);
+          
+          //sheet
+          
+          XSSFSheet WS=WB.getSheet("Roledata");
+          int Rc=WS.getLastRowNum();
+          System.out.println(Rc);
+          
+          for (int i = 1; i <=Rc; i++) 
+          {
+        	  XSSFRow WR=WS.getRow(i);
+              XSSFCell WC=WR.getCell(0);
+              XSSFCell WC1=WR.getCell(1);
+              XSSFCell Wc2=WR.createCell(2);
+              
+              String Rname=WC.getStringCellValue();
+              String Rtype=WC1.getStringCellValue();
+    
+             Res= LB.Role(Rname,Rtype);
+             System.out.println(Res);
+             Wc2.setCellValue(Res);
+              
+		}
+          
+                   
+          FileOutputStream fos=new FileOutputStream("E:\\Ranfordbank\\ranford\\src\\com\\ranford\\results\\roleres.xlsx");
+          WB.write(fos);
+          WB.close();
+          /*XSSFCell WC=WR.getCell(0);
+          Res=WC.getStringCellValue();
+          System.out.println(Res);
+          
+*/	}
+
+}

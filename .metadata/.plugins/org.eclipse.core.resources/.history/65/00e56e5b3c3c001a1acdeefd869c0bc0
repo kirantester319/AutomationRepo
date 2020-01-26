@@ -1,0 +1,28 @@
+package Test;
+
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
+
+import Pages.DepositCalculator;
+
+
+
+class DepositecalculatorTest extends BaseTest
+
+
+@Test
+public void TestExecution()
+{
+	
+	
+	DepositCalculator FD=PageFactory.initElements(driver, DepositCalculator.class);
+	
+	DepositCalculator.fixedDeposite();
+	
+	
+	
+	
+	
+	
+	
+}

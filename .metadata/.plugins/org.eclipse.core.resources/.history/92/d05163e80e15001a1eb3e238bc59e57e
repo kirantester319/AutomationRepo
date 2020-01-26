@@ -1,0 +1,191 @@
+
+package PracticeAutomation;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.*;
+
+public class TOtalMethods {
+	
+	
+	WebDriver driver;
+	WebDriverWait wait;
+	
+	
+	@Test
+	public void initialization()
+	{
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\hp\\eclipse-workspace\\Maven\\Drivers\\chromedriver2.exe");
+		
+		 driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.get("http://www.flipkart.com");
+		//Wait condition			
+		impliciteWaitMethods(20);
+		
+	/*}
+	
+	@Test//(dataProvider ="dataforlogin")
+	
+	public void WindowHandles(String Username, String password)
+	{*/
+		String parentWindow = driver.getWindowHandle();
+		
+		Set<String > windowhandles= driver.getWindowHandles();
+			
+				
+		impliciteWaitMethods(20);
+	
+		for(String childWindow :windowhandles)
+		{
+			if(!parentWindow.equalsIgnoreCase(childWindow))
+			{
+				driver.switchTo().window(childWindow);
+				
+				//Enter username1 in  field
+			WebElement username=	driver.findElement(By.xpath("//input[@class=\'_2zrpKA _1dBPDZ\']"));
+			sendkeys("knjkk319@gmail.com", username);
+			ExplicitelyWait(username, 20);
+				
+			//Enter Password in password field
+			WebElement pasword= driver.findElement(By.xpath("//input[@class=\'_2zrpKA _3v41xv _1dBPDZ\']"));
+			sendkeys("nagajyothi319", pasword);
+			
+			ExplicitelyWait(pasword, 20);
+			//Click Button to login
+			WebElement button =	driver.findElement(By.xpath("//button[@class='_2AkmmA _1LctnI _7UHT_c']"));
+			button.click();
+			ExplicitelyWait(button, 40);
+			
+		//String alert=	driver.switchTo().alert().getText();
+		
+		//System.out.println(alert);
+			
+			ScreenShots("flipkart");
+			
+			//For Multiple tabs
+		/*	 ArrayList<String> tab = new ArrayList<>(windowhandles);
+			 
+					int WindowLength =tab.size();
+					System.out.println(WindowLength);
+					 for(int i=0;i<WindowLength;i++)
+					 {
+						 driver.switchTo().window(tab.get(0));
+					 }
+			 */
+			}
+	}
+	
+	}
+	
+	@DataProvider(name="dataforlogin")
+	public  Object[][] data()
+	{
+		Object[][] obj = new Object[3][2];
+		
+		obj[0][0]="kirankumar";
+		obj[0][1]="rajeshkumar";
+		obj[1][0]="kumarkiran";
+		obj[1][1]="kumarRajesh";
+		obj[2][0]="knjkk319@gmail.com";
+		obj[2][1]="nagajyothi319";
+		
+	return obj;
+	}
+	
+	public void impliciteWaitMethods(int time)
+	{
+		driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
+	}
+
+	public void ExplicitelyWait(WebElement element , int time)
+	{
+		wait= new WebDriverWait(driver,time);
+		
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+	
+	public void fluentWait(int time, int pollintime ,String exception)
+	{
+	
+		Wait<WebDriver> fluwait= new FluentWait<WebDriver>(driver)
+											.withTimeout(time , TimeUnit.SECONDS)
+											.pollingEvery(pollintime,TimeUnit.SECONDS)
+											.ignoring(Exception.class);
+	}
+	
+	public void Actionsclass(WebElement actelement)
+	{
+	Actions act = new Actions(driver);
+	act.moveToElement(actelement).build().perform();
+	}
+	
+	
+	public void sendkeys(String inputValue, WebElement inputWebElement )
+	{
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		
+		js.executeScript("arguments[0].value='inputValue'", inputWebElement);
+		
+	}
+	
+	
+	public void ScreenShots(String Filename)
+	{
+		try {
+			File source =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			
+			FileUtils.copyFile(source, new File("C:/Users/hp/eclipse-workspace/Project/ScreenShot"+ Filename + ".png"));
+		} 
+		
+		
+		catch (WebDriverException e) 
+		{		
+			e.printStackTrace();
+		} 
+		catch (IOException e) 
+		{
+			
+			e.printStackTrace();
+		}
+		
+		/*
+		 * File source = TakesScreenshot)driver).getScreenShotAS(outputType.FILE);
+		 * 
+		 * Fileutils.copyFile(Source, new File("path"+Filename+."png");
+		 * 
+		 */
+		
+	}
+	
+	
+	
+	/*
+	@AfterSuite
+	public void teardownBrowser()
+	{
+		driver.close();
+	}
+		*/
+}
+

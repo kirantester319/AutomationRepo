@@ -1,0 +1,36 @@
+package polymorphism;
+
+class parent {
+	
+  void show ()
+ {
+	  
+	 System.out.println("Parent show method");
+ }
+}
+
+
+class child extends parent
+{
+	 public void show()
+	{	
+		System.out.println("Chid show method");
+	}
+	
+}	
+
+	
+	public class OverrideMethod
+	{
+	public static void main (String args[])
+	
+	{
+		parent o = new parent();
+		
+		o.show();
+		
+	/*	child c = new child();
+		c.show();
+	*/	
+	}
+}

@@ -1,0 +1,51 @@
+public class notepad {
+
+	public static void main(String[] args) throws IOException 
+	
+	{
+		
+		lib LB=new lib();
+		String Res=LB.openApp("http://192.168.1.4/ranford2");
+          System.out.println(Res);
+          
+          Res=LB.AdmLgn("Admin","Admin");
+          System.out.println(Res);
+        
+		String Fpath="E:\\Ranfordbank\\Ranford\\src\\com\\Ranford\\testdata\\Role.txt";
+	
+		String Rpath="E:\\Ranfordbank\\Ranford\\src\\com\\Ranford\\results\\roleres.txt";
+		String SD;
+		//Input File path
+       
+		FileReader FR=new FileReader(Fpath);
+		BufferedReader Br=new BufferedReader(FR);
+		String Sread=Br.readLine();
+		System.out.println(Sread);
+		
+		FileWriter FW=new FileWriter(Rpath);
+		BufferedWriter Bw=new BufferedWriter(FW);
+		Bw.write(Sread+"@@@"+"Results");
+		Bw.newLine();
+		
+		while ((SD=Br.readLine())!=null)
+			
+		{
+			System.out.println(SD);
+            String [] Sr=SD.split("###");
+            String Rname=Sr[0];
+            System.out.println(Rname);
+            String Rtype=Sr[1];
+            System.out.println(Rtype);
+        
+            Res=LB.Role(Rname,Rtype);
+            System.out.println(Res);
+            
+            Bw.write(Rname+"%%%"+Rtype+"@@@"+Res);
+            Bw.newLine();
+		}
+		Bw.close();
+		Br.close();
+		
+	}
+
+}

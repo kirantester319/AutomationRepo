@@ -1,0 +1,148 @@
+package SeleniumTask;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.*;
+
+public class AmazonTask {
+	
+	static WebDriver driver;
+	
+	@BeforeSuite
+	public void BrowserInitialization()
+	{
+		System.setProperty("webdriver.chrome.driver", "F:\\Drivers\\chromedriver1.exe");
+		driver= new ChromeDriver();
+		driver.manage().window().maximize();
+		implecitewait(20);
+		driver.get("http://www.amazon.in");
+	}
+	@Test
+	public void Test()
+	{
+		Login();
+		seachmobile();
+		LookForRedmiY2();
+		//nextPage();
+
+	}
+	public void Login()
+	{
+		try
+		{
+		Actions act = new Actions(driver);
+		//Account and list
+		WebElement Account = driver.findElement(By.xpath("//*[@id=\"nav-link-accountList\"]"));
+		act.moveToElement(Account).build().perform();
+					//Click signIn Button
+		
+		
+		WebElement signinButton = driver.findElement(By.xpath("//*[@id=\"nav-flyout-ya-signin\"]/a/span"));
+		explecitewait(signinButton, 20);
+		signinButton.click();
+	//	explecitewait(signinButton, 30);
+		
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+			System.out.println("This is Login  Method Failed");
+		}
+		//EmailID
+		
+		driver.findElement(By.xpath("//*[@id=\"ap_email\"]")).sendKeys("kirantester319@gmail.com");
+		//Email Continue Button
+		driver.findElement(By.xpath("//*[@id=\"continue\"]")).click();
+		
+		//Password text field
+		
+		driver.findElement(By.xpath("//*[@id=\"ap_password\"]")).sendKeys("nagajyothi319");
+		//signIn Button
+		
+		driver.findElement(By.xpath("//*[@id=\"signInSubmit\"]")).click();
+		
+	}
+	
+	
+	public void seachmobile()
+	{	//Search Box Enter Redmi Note
+		driver.findElement(By.xpath("//*[@id=\"twotabsearchtextbox\"]")).sendKeys("Redmi Note");
+		//Click Search Button to search te Redmi Note mobiles
+		driver.findElement(By.xpath("//*[@id=\"nav-search\"]/form/div[2]/div/input")).click();
+		
+		
+	}
+	
+	public void LookForRedmiY2()
+	{
+		try
+		{
+		Set<WebElement> setOfElements= new HashSet<>(driver.findElements(By.xpath("//div/h2/a/span")));
+		
+		int setsize = setOfElements.size();
+		System.out.println(setsize);		
+		ArrayList<WebElement> mobilesList= new ArrayList<>(setOfElements);
+		
+		WebElement Redmiy2=driver.findElement(By.xpath("//*[contains(text(),'Redmi Y2 (Gold, 4GB RAM, 64GB Storage)')]"));
+		
+		for(int i=0;i<setsize;i++)
+		{
+			
+			if(setOfElements.contains(Redmiy2))
+				{
+					Redmiy2.click();
+				}
+				else
+				{
+					nextPage();
+				}
+		}
+	}
+		
+	catch(Exception e)
+	{
+		System.out.println(e.toString());
+	}
+	}
+	public void nextPage()
+	{
+		
+		WebElement nextButton=driver.findElement(By.className("a-last"));
+		
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		
+		js.executeScript("window.scrollBy (0,5492)");
+			
+		nextButton.click();
+		
+	}
+	
+	
+	public void implecitewait(int timeout)
+	{
+		driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+	}
+	
+	public void explecitewait(WebElement element, int timeout)
+	{
+		WebDriverWait wait = new WebDriverWait(driver ,timeout);
+		
+		wait.until(ExpectedConditions.visibilityOf(element));
+		
+	}
+
+}

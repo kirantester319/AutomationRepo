@@ -1,0 +1,99 @@
+package Assignment2;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
+
+public class Assign2 {
+	
+	WebDriver driver;
+	
+	@Test
+	public void initializingbrowser()
+	{
+		
+		System.setProperty("webdriver.chrome.driver", "F:\\Drivers\\chromedriver1.exe");
+		driver= new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.get("https://chandanachaitanya.github.io/selenium-practice-site/?languages=Java&enterText=");
+		
+		driver.manage().window().maximize();
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		
+		table();	
+		CountRowAndClumn();
+		DragandDrop();
+		
+			}
+	
+	
+	
+	
+	public void DragandDrop()
+	{
+		
+		//Click 
+	WebElement source=	driver.findElement(By.xpath("//*[contains(text(),'click()')]"));
+		
+	WebElement Destination=	driver.findElement(By.xpath("//*[contains(text(),'clickAndHold()')]"));
+	
+	Actions act = new Actions(driver);
+	
+	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	//act.click(source).release(Destination).build().perform();
+	act.dragAndDrop(Destination, source).build().perform();
+	
+	System.out.println("Drag and drop done");
+	
+	}
+	
+	public void table()
+	{
+	List<WebElement> list =driver.findElements(By.xpath("//*[@id=\"tables\"]/div/table"));
+		
+		
+		for(int i=0;i<list.size();i++)
+		{
+			if(list!=null)
+			{
+			
+			System.out.println(list.get(i).getText());
+			}
+			
+		}
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);	
+			
+	}
+	
+	public void CountRowAndClumn()
+	{
+		
+		List<WebElement> tableRowList=driver.findElements(By.xpath("//*[@id=\"BooksAuthorsTable\"]/tbody/tr"));
+		
+		int row = tableRowList.size();
+	
+		List<WebElement> tableList=driver.findElements(By.xpath("//*[@id=\"BooksAuthorsTable\"]/tbody/tr/th"));
+		
+		int column =tableList.size();
+		
+		System.out.println("No of rows in table"+row);
+		System.out.println("No of column in table"+column);
+		
+		
+		
+		
+		
+	}
+	
+
+}

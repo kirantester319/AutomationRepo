@@ -1,0 +1,86 @@
+package JavaPrac;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class String_CharacterCount {
+	
+	public static void main(String[] args) {
+		
+		
+	/*	String str = "This is Java Selenium  is Java Programme";
+		
+		
+		
+		//FInding the occurrance of a String 
+		
+		
+		String s[] = str.split(" ");
+		
+		
+		Map<String , Integer> hm = new HashMap<>();
+		
+		for(String tempString: s) 
+		
+		{
+		
+		if(hm.get(tempString)!=null)
+		{
+			hm.put(tempString, hm.get(tempString)+1);
+		}
+		
+		else
+		{
+			hm.put(tempString, 1);
+		}
+		
+	}
+		System.out.println(hm);
+	}
+	
+	
+	
+	*/
+	
+	//Occurrence of a character
+	
+	String s = "Selenium";
+	
+	Map<Character, Integer> chm= new HashMap<>();
+	
+	
+			
+			
+			
+	for(Character c : s.toCharArray())
+			{
+		
+		if(chm.containsKey(c))
+		{
+			chm.put(c, chm.get(c)+1);          
+		}
+		else
+		{
+			chm.put(c, 1);
+		}
+		
+		
+	}
+	
+	
+	
+	System.out.println(chm);
+	
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}

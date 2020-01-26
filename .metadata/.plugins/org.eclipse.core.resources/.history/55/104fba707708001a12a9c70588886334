@@ -1,0 +1,53 @@
+package JavaPrac;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class characterCount {
+
+	
+	public static void main(String[] args) {
+		
+		
+	Map<Character,Integer> hmap= new HashMap<>();
+	
+	
+	Scanner scan = new Scanner(System.in);
+	String str = scan.nextLine();
+	
+	char[] c = str.toCharArray();
+	
+	
+	for(Character s:c)
+	{
+		
+		if(hmap.get(s)!=null)
+		
+		{
+			hmap.put(s, hmap.get(s)+1);
+			
+			
+		}
+		else
+		{
+			hmap.put(s, 1);
+		}
+		
+	}
+		System.out.println(hmap);
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

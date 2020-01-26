@@ -1,0 +1,21 @@
+
+public class loginpom 
+
+{
+	@Test
+public void Exe()
+{
+	WebDriver driver=new FirefoxDriver();
+	driver.get("http://192.168.1.4/ranford2");
+	driver.manage().window().maximize();
+	
+	ranfordHP Php=PageFactory.initElements(driver,ranfordHP.class);
+	Php.login("Admin","Admin");
+	adminHP Ahp=PageFactory.initElements(driver,adminHP.class);
+	Ahp.brch();
+	Sleeper.sleepTightInSeconds(2);
+	Ahp.hm();
+	Ahp.rle();
+	
+}
+}

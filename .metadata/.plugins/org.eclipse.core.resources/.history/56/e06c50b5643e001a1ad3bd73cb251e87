@@ -1,0 +1,31 @@
+package Encapsulation;
+
+public class Encap {
+	
+	
+	private int i;
+	
+	private int j;
+	private String k;
+	
+	
+	
+	public static void main(String[] args) {
+		
+		
+		Encap e =new Encap();
+		
+		
+		public int seti(int i)
+		{
+			return i;
+			
+		}
+		
+		public void geti()
+		{
+			System.out.println(e.geti());
+		}
+	}
+
+}

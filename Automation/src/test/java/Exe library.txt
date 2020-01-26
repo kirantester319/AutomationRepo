@@ -1,0 +1,14 @@
+public class libexe {
+
+	
+	public static void main(String[] args) throws IOException {
+		
+		lib LB=new lib();
+		String Res=LB.openApp("http://192.168.1.4/ranford2");
+          System.out.println(Res);
+          
+          Res=LB.AdmLgn("Admin","Admin");
+          System.out.println(Res);
+	}
+
+}

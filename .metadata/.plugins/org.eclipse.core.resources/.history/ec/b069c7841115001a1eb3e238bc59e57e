@@ -1,0 +1,53 @@
+package PracticeAutomation;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class Datadriven2 {
+	
+	WebDriver driver;
+
+	@Test
+	public void initialization()throws Exception
+	{
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\hp\\eclipse-workspace\\Maven\\Drivers\\chromedriver2.exe");
+		
+		 driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.get("http://demosite.center/wordpress/wp-login.php");
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.findElement(By.xpath("//input[@id='user_login']")).sendKeys("admin1");
+		
+		driver.findElement(By.xpath("//input[@id='user_pass']")).sendKeys("demo1");
+		
+		driver.findElement(By.xpath("//input[@id='wp-submit']")).click();
+		
+		Thread.sleep(5000);
+		String text=driver.getTitle();
+		System.out.println(text);
+
+}
+
+			public Object[][] data()
+			
+			{
+				Object [][] obj = new Object[3][2];
+				
+				obj[0][0]="admin";
+				obj[0][1]="demo";
+				obj[1][0]="admin2";
+				obj[1][1]="demo2";
+				obj[2][0]="admin3";
+				obj[2][1]="demo3";
+				return null;
+			}
+		
+	}

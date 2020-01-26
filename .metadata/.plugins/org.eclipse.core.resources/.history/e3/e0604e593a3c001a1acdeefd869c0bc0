@@ -1,0 +1,88 @@
+package Pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+public class DepositCalculator {
+	
+WebDriver driver;
+
+
+		DepositCalculator(WebDriver driver)
+		{
+	
+			this.driver= driver;
+		}
+	
+		//Principle Field
+		@FindBy(how=How.XPATH,using="//div[@class='header_user_info']")
+		@CacheLookup
+		WebElement principle;
+		
+		//FDTimePeriod
+		@FindBy(how=How.XPATH,using="//input[contains(@id,'periodInputField')]")
+		@CacheLookup
+		WebElement Timeperiod;
+		//InterestInput
+		
+		@FindBy(how=How.XPATH,using="//input[contains(@id,'interestInputField')")
+		@CacheLookup
+		WebElement InterestRate;
+		
+		
+		
+		//Compound Frequency
+		@FindBy(how=How.XPATH,using="//*[@id=\"frequencySelectField\"]")
+		@CacheLookup
+		WebElement compound;
+		
+		//Calculate Button
+		@FindBy(how=How.XPATH,using="//*[@id=\"calculateButton\"]")
+		@CacheLookup
+		WebElement CalculateButton;
+		
+		//click the see chart Button
+		@FindBy(how=How.XPATH,using="//*[@id=\\\"chart-btn-wrapper\\\"]/a")
+		@CacheLookup
+		WebElement CalculateButton;
+				
+				//FDTimeperiod
+				Select Period = new Select (Timeperiod);
+				
+				Period.selectByIndex(2);
+				
+				
+				//Compound Frequency
+				
+				Select comfreq = new Select (compound);
+				comfreq.selectByVisibleText("Yearly");
+				
+				
+				//Calculate Button
+				
+				driver.findElement(By.xpath("//*[@id=\"calculateButton\"]")).click();
+				
+				
+				//click the see chart Button
+				
+				driver.findElement(By.xpath("//*[@id=\"chart-btn-wrapper\"]/a")).click();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

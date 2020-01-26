@@ -1,0 +1,29 @@
+
+public class baseng {
+ 
+	public lib LB =new lib();
+  @BeforeTest
+  public void beforeTest() 
+  {
+	  LB.AdmLgn("Admin","Admin");
+  }
+
+  @AfterTest
+  public void afterTest() 
+  {
+  LB.admlgt();
+  }
+
+  @BeforeSuite
+  public void beforeSuite() throws IOException 
+  {
+  LB.openApp("http://192.168.1.4/ranford2");
+  }
+
+  @AfterSuite
+  public void afterSuite() 
+  {
+  LB.Appc();
+  }
+
+}

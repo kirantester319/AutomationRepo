@@ -1,0 +1,14 @@
+
+#home page
+
+Rbank=.//*[@id='Form1']/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[4]/p/span
+
+
+# Admin login with ID property
+Username=txtuId
+Password=txtPword
+Login=login
+
+# for branch creation 
+# xpath 
+Bbutton=.//*[@id='Table_01']/tbody/tr[2]/td/table/tbody/tr[2]/td/a/img

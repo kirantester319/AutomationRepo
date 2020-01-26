@@ -1,0 +1,28 @@
+package Test;
+
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
+
+
+
+public class Test 
+
+
+
+@Test
+public void init() throws Exception
+{
+	
+	{
+	HomePage homepage=PageFactory.initElements(driver, HomePage.class);
+	
+	homepage.SignInbutton();
+	
+	
+	
+	LoginPage login=PageFactory.initElements(driver, LoginPage.class);
+	
+	login.LoginCredientials("jetblue@grr.la","jetblue");
+	
+}
+

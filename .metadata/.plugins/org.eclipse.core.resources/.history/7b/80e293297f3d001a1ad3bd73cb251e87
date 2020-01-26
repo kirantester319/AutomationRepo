@@ -1,0 +1,24 @@
+package JavaP;
+
+import java.util.HashMap;
+
+import JavaPrac.characterCount;
+
+public class sample {
+	
+	public static void main(String[] args) {
+		
+		
+		
+		
+		int a[] = new int[5];
+		
+		a[0]=0;
+		a[1]=1;
+		
+		
+	}
+	
+		
+
+}
